@@ -1,47 +1,48 @@
-let myLeads = []
-const inputEl = document.getElementById("input-el")
-const inputBtn = document.getElementById("input-btn")
-const ulEl = document.getElementById("ul-el")
-const deleteBtn = document.getElementById("delete-btn")
-const leadsFromLocalStorage = JSON.parse( localStorage.getItem("myLeads") )
-const tabBtn = document.getElementById("tab-btn")
 
-if (leadsFromLocalStorage) {
-    myLeads = leadsFromLocalStorage
-    render(myLeads)
-}
+let arr = []
+const btnWashCar = document.getElementById("washCarEl")
+const btnMowLawn = document.getElementById("mowLawnEl")
+const btnPullWeeds = document.getElementById("pullWeedsEl")
+const details = document.getElementById("detailsEl")
+const amount = document.getElementById("amountEl")
 
-tabBtn.addEventListener("click", function(){    
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-        myLeads.push(tabs[0].url)
-        localStorage.setItem("myLeads", JSON.stringify(myLeads) )
-        render(myLeads)
+btnWashCar.addEventListener("click", function () {
+    arr.push({
+        name: "Wash Car",
+        price: 10
     })
+    render()
 })
 
-function render(leads) {
-    let listItems = ""
-    for (let i = 0; i < leads.length; i++) {
-        listItems += `
-            <li>
-                <a target='_blank' href='${leads[i]}'>
-                    ${leads[i]}
-                </a>
-            </li>
+btnMowLawn.addEventListener("click", function () {
+    arr.push({
+        name: "Mow Lawn",
+        price: 20
+    })
+    render()    
+})
+
+btnPullWeeds.addEventListener("click", function() {
+    arr.push({
+        name: "Pull Weeds",
+        price: 30
+    })
+    render()
+})
+
+function render() {
+    let record = ""
+    let total = 0
+    for(let i = 0; i < arr.length; i++) {
+        record += `
+            <div class="item-task">
+                <p>${arr[i].name} </p>
+                <p>$${arr[i].price}</p>
+            </div>
         `
+        total += arr[i].price
     }
-    ulEl.innerHTML = listItems
+    
+    details.innerHTML = record
+    amount.textContent = `$${total}`
 }
-
-deleteBtn.addEventListener("dblclick", function() {
-    localStorage.clear()
-    myLeads = []
-    render(myLeads)
-})
-
-inputBtn.addEventListener("click", function() {
-    myLeads.push(inputEl.value)
-    inputEl.value = ""
-    localStorage.setItem("myLeads", JSON.stringify(myLeads) )
-    render(myLeads)
-})

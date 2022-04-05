@@ -1,14 +1,45 @@
 <html>
-    <head>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <input type="text" id="input-el">
-        <button id="input-btn">SAVE INPUT</button>
-        <button id="tab-btn">SAVE TAB</button>
-        <button id="delete-btn">DELETE ALL</button>
-        <ul id="ul-el">
-        </ul>
-        <script src="index.js"></script>
+        <header>
+            <h1>Invoice creator</h1>
+            <p>Thanks for choosing SageTech!</p>
+        </header>
+        <section>
+            
+            <div class="btns">
+                <button id="washCarEl">Wash Car: 10$</button>
+                <button id="mowLawnEl">Mow Lawn: $20</button>
+                <button id="pullWeedsEl">Pull Weeds: $30</button>
+            </div>
+            <div id="header-details">
+                <span>TASK</span>
+                <span>TOTAL</span>
+            </div>
+            <div id="detailsEl">
+                <!-- <div class="item-task">
+                    <p>Wash Car <button>Remove</button></p>
+                    <p>$10</p>
+                </div> -->
+            </div>
+            <hr/>
+            <div class="seccion-total">
+                
+                <div class="h-total">
+                    <span>NOTES</span>
+                    <span>TOTAL AMOUNT</span>
+                </div>
+                <div class="d-total">
+                    <span>We accept cash, credit card, or PayPal</span>
+                    <span id="amountEl">$0</span>
+                </div>
+            </div>
+            
+            <button id="btn-send">Send invoice</button>
+            
+        </section>
+        <script src="index.pack.js"></script>
     </body>
 </html>
